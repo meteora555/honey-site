@@ -1,0 +1,26 @@
+.header{
+  background-color: #333333;
+    &__inner-items{
+       
+        display: flex;
+        margin-top: 15px;
+        column-gap: 5px;
+        align-items: center;
+    }
+    &__inner-item{
+        font-size: 18px;
+        line-height: 30px;
+        padding-left: 25px;
+        padding-bottom: 10px;
+   }
+    &__inner-link{
+        color:#fff;
+        &:hover{
+            color:#faaa00;
+        }
+    }   
+    &__form-search{
+        padding-left: 200px;
+
+    }
+}
