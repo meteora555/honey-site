@@ -1,17 +1,19 @@
 .header{
-  background-color: #333333;
+    &__inner{
+        background-color: #333333;
+    }
     &__inner-items{
-       
         display: flex;
-        margin-top: 15px;
+        margin-bottom: 15px;
         column-gap: 5px;
         align-items: center;
     }
     &__inner-item{
-        font-size: 18px;
-        line-height: 30px;
+        font-size: 15px;
+        line-height: 22px;
         padding-left: 25px;
         padding-bottom: 10px;
+        @extend %title-font;
    }
     &__inner-link{
         color:#fff;
@@ -21,6 +23,66 @@
     }   
     &__form-search{
         padding-left: 200px;
+        display: flex;
+        }
+    &__form-input{
+        width: 240px;
+        height: 40px;
+        border-radius: 10px;
+        &::placeholder{
+            padding: 10px  10px;
+        }
+        
+    }
+    &__form-btn {
+        background-color:#faaa00;
+        margin-left: -8px;
+        border-radius: 0 10px 10px 0;
+    }
+    &__form-img {
+        height: 35px;
+    }
+}
 
+.header__logo{
+    display: flex;
+    align-items:center;
+    
+    &-item{
+        max-width: 400px;
+        max-height: 335px;
+    }
+    &-img{
+        height: 335px;
+        width: 400px;
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+    &-description{
+        
+        text-align: center;
+    }
+    &-schedule{
+        
+        padding-left: 40px;
+    }
+    &-schedule-img{
+        width: 24px;
+        height: 24px;
+        margin-right: 7px;
+    }
+    &-schedule-text{
+        display: flex;
+        align-items: center;
+    }
+}
+.callback{
+    margin-left: 30px;
+    &__btn{
+        background-color: #faaa00;
+        border-color: #837d7d;
+        border-radius: 10px;
+        width: 200px;
+        height: 50px;
     }
 }
