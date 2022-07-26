@@ -20,9 +20,7 @@ const slider = (content,triggers) => {
         btns[i].classList.add('slider__dot-active');
         
     } 
-    function showByTime () {
-        
-    }
+    
     hideSlides();
     showSlides();
 

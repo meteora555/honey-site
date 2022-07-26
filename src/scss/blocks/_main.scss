@@ -58,6 +58,7 @@
     &__dot{
         position: relative;
         color: #dfdee3;
+        cursor: pointer;
         &::after{
             position: absolute;
             content: '';
@@ -88,4 +89,25 @@
         display: none;
     }
 
+}
+.delivery{
+    &__items{
+        padding-top: 80px;
+        padding-bottom: 30px;
+        display: flex;
+        justify-content: center;
+        column-gap: 100px;
+        
+    }
+    &__item{
+        display: flex;
+        align-items: center;
+    }
+    &__img{
+        width: 45px;
+        height: 45px;
+    }
+    &__text{
+        padding-left: 10px;
+    }
 }
