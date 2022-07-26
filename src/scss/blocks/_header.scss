@@ -1,7 +1,7 @@
 // .wrapper{
-//      background-image: url(../../../src/images/texture.jpg);
-//     background-size: cover;
-//     background-repeat: no-repeat;
+//     //  background-image: url(../../../src/images/texture.jpg);
+//     // background-size: cover;
+//     // background-repeat: no-repeat;
 // }
 .header{
     background-image: url(../../../src/images/texture.jpg);
@@ -56,14 +56,15 @@
 .header__logo{
     display: flex;
     align-items:center;
+    max-height: 165px;
+    margin-bottom: 20px;
     
     &-item{
         max-width: 400px;
         max-height: 335px;
     }
     &-img{
-        height: 335px;
-        width: 400px;
+        width: 80%;
         background-size: cover;
         background-repeat: no-repeat;
       }
@@ -99,6 +100,51 @@
         }
     }
 }
+.about{
+    &__inner{
+        background-color: rgb(210, 242, 242);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+    }
+    &__inner-title{
+        font-size: 36px;
+        line-height: 60px;
+        max-width: 700px;
+        max-height: 400px;
+        margin-top: 20px;
+        padding: 10px 5px;
+        border: 1px solid rgb(167, 20, 20);
+    }
+    &__inner-text{
+        padding: 15px 15px;
+        font-size: 24px;
+        line-height: 20px;
+        margin-top: 20px;
+        position: relative;
+        &::before{
+            position: absolute;
+            content: '';
+            background-color: rgb(19, 19, 19);
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 300px;
+            height: 2px;
+        }
+        &::after{
+            position: absolute;
+            content: '';
+            background-color:black;
+            right: 0;
+            bottom: 0px;
+            width: 300px;
+            height: 2px;
+        }
+    }
+}
 .breadcrumbs{
     background-color:#837d7d9e;
     height: 40px;
@@ -111,7 +157,7 @@
     }
     &__item{
        padding: 0 21px;
-       border-right: 1px solid #e2dec8; 
+       border-right: 2px solid #e2dec8; 
        @extend %title-font;
        font-size: 14px;
        &:last-child{
