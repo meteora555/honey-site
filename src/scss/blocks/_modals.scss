@@ -1,0 +1,52 @@
+
+.modal{
+    &__callback{
+        display: none;
+        position: fixed;
+        top: 135px;
+        left: 500px;
+        width: 38%;
+        height: 28%;
+        z-index: 9;
+        background-color: rgba($color: #b2aeae, $alpha: .9)
+        
+    }
+    &__callback-close{
+        position: relative;
+        top: -2.2rem;
+        right: -35rem;
+        font-size: 2rem;
+    }
+    &__callback-title{
+        @extend %title-font;
+        padding-left: 93px;
+
+    }
+    &__callback-text{
+        padding-top: 15px;
+        padding-bottom: 15px;
+        padding-left: 130px;
+        font-size: 18px;
+    }
+    &__form{
+        display: flex;
+        padding-left: 16px;
+    }
+    &__form-input{
+        width: 200px;
+        height: 30px;
+        border-radius: 10px;
+        padding-left: 10px;
+        &::placeholder{
+            padding: 10px  10px;
+        }
+    }
+    &__callback-btn{
+        background-color:#faaa00;
+        margin-left: 10px;
+        border-radius: 10px;
+        cursor: pointer;
+        
+    }
+
+}
