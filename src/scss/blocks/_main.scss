@@ -165,3 +165,39 @@
         }
     }
 }
+.payment{
+    padding-left: 150px;
+    &__title{
+        margin-top: 35px;
+        padding-bottom: 45px;
+        @extend %title-font;
+        text-align: center;
+        font-size: 26px;
+        line-height: 24px;
+    }
+    &__condition{
+        @extend %title-font;
+        text-align: left;
+        position: relative;
+        font-size: 22px;
+        line-height: 20px;
+        &::after{
+            position: absolute;
+            content: '';
+            background: #faaa00;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            margin: 0 auto;
+            width: 350px;
+        }
+        
+    }
+    &__text{
+        padding-bottom: 35px;
+        width: 850px;
+        font-size: 18px;
+        line-height: 25px;
+        text-align: left;
+    }
+}

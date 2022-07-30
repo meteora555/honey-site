@@ -8,7 +8,7 @@
         width: 38%;
         height: 28%;
         z-index: 9;
-        background-color: rgba($color: #b2aeae, $alpha: .9)
+        background-color: rgba($color: #faaa00, $alpha: .9)
         
     }
     &__callback-close{
@@ -42,9 +42,10 @@
         }
     }
     &__callback-btn{
-        background-color:#faaa00;
+        background-color:#333333;
         margin-left: 10px;
         border-radius: 10px;
+        color: #fff;
         cursor: pointer;
         
     }
