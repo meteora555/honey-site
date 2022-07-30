@@ -112,6 +112,7 @@
     }
 }
 .gallery{
+    padding-bottom: 45px;
     &__items{
         display: grid;
         grid-template-columns: repeat(4, 330px);
