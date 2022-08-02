@@ -283,10 +283,18 @@
         float: left;
         margin: 0px 10px 2px 50px;
         }
+    &__docs-imgsecond{
+        width: 280px;
+        height: 380px;
+        float: right;
+        margin-top: 31px;
+    }
     &__list{
         font-size: 18px;
         line-height: 19px;
         margin-bottom: 50px;
+        padding-top: 65px;
+        padding-left: 130px;
      }
     &__item{
         padding-bottom: 10px;
