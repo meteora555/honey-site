@@ -25,74 +25,87 @@ const imagemin = require('gulp-imagemin');
 //Модуль переименовывания файлов
 const rename = require('gulp-rename');
 // const babel = require('gulp-babel');
-const webpack = require("webpack-stream");
+const webpack = require('webpack-stream');
 
 //Порядок подключения файлов со стилями
-const styleFiles = [
-   './src/scss/style.scss'
-]
+const styleFiles = ['./src/scss/style.scss'];
 //Порядок подключения js файлов
-const scriptFiles = [
-   './src/js/main.js'
-]
+const scriptFiles = ['./src/js/main.js'];
 
 //Таск для обработки стилей
 gulp.task('styles', () => {
-   //Шаблон для поиска файлов CSS
-   //Все файлы по шаблону './src/css/**/*.css'
-   return gulp.src(styleFiles)
+  //Шаблон для поиска файлов CSS
+  //Все файлы по шаблону './src/css/**/*.css'
+  return (
+    gulp
+      .src(styleFiles)
       .pipe(sourcemaps.init())
       //Указать stylus(), sass() или less()
       .pipe(sass())
       //Объединение файлов в один
       .pipe(concat('style.css'))
       //Добавить префиксы
-      .pipe(autoprefixer({
-         cascade: false
-      }))
+      .pipe(
+        autoprefixer({
+          cascade: false,
+        }),
+      )
       //Минификация CSS
-      .pipe(cleanCSS({
-         level: 2
-      }))
+      .pipe(
+        cleanCSS({
+          level: 2,
+        }),
+      )
       .pipe(sourcemaps.write('./'))
-      .pipe(rename({
-         suffix: '.min'
-      }))
+      .pipe(
+        rename({
+          suffix: '.min',
+        }),
+      )
       //Выходная папка для стилей
       .pipe(gulp.dest('./build/css'))
-      .pipe(browserSync.stream());
+      .pipe(browserSync.stream())
+  );
 });
 
 //Таск для обработки скриптов
-gulp.task("scripts", () => {
-   return gulp.src("./src/js/main.js")
-               .pipe(webpack({
-                   mode: 'development',
-                   output: {
-                       filename: 'script.js'
-                   },
-                   watch: false,
-                   devtool: "source-map",
-                   module: {
-                       rules: [
-                         {
-                           test: /\.m?js$/,
-                           exclude: /(node_modules|bower_components)/,
-                           use: {
-                             loader: 'babel-loader',
-                             options: {
-                               presets: [['@babel/preset-env', {
-                                   debug: true,
-                                   corejs: 3,
-                                   useBuiltIns: "usage"
-                               }]]
-                             }
-                           }
-                         }
-                       ]
-                     }
-               }))
-               .pipe(gulp.dest('./build/js'));
+gulp.task('scripts', () => {
+  return gulp
+    .src('./src/js/main.js')
+    .pipe(
+      webpack({
+        mode: 'development',
+        output: {
+          filename: 'script.js',
+        },
+        watch: false,
+        devtool: 'source-map',
+        module: {
+          rules: [
+            {
+              test: /\.m?js$/,
+              exclude: /(node_modules|bower_components)/,
+              use: {
+                loader: 'babel-loader',
+                options: {
+                  presets: [
+                    [
+                      '@babel/preset-env',
+                      {
+                        debug: true,
+                        corejs: 3,
+                        useBuiltIns: 'usage',
+                      },
+                    ],
+                  ],
+                },
+              },
+            },
+          ],
+        },
+      }),
+    )
+    .pipe(gulp.dest('./build/js'));
 });
 // gulp.task('scripts', () => {
 //    //Шаблон для поиска файлов JS
@@ -125,7 +138,7 @@ gulp.task("scripts", () => {
 //         }
 //   }))
 //    // .pipe(sourcemaps.init())
-   
+
 //    //Объединение файлов в один
 //    // .pipe(concat('main.js'))
 //    // .pipe(sourcemaps.write('.'))
@@ -143,34 +156,41 @@ gulp.task("scripts", () => {
 
 //Таск для очистки папки build
 gulp.task('del', () => {
-   return del(['build/*'])
+  return del(['build/*']);
 });
 
 //Таск для сжатия изображений
-gulp.task('img-compress', ()=> {
-   return gulp.src('./src/images/**')
-   .pipe(imagemin({
-      progressive: true
-   }))
-   .pipe(gulp.dest('./build/images/'))
+gulp.task('img-compress', () => {
+  return gulp
+    .src('./src/images/**')
+    .pipe(
+      imagemin({
+        progressive: true,
+      }),
+    )
+    .pipe(gulp.dest('./build/images/'));
 });
 
 //Таск для отслеживания изменений в файлах
 gulp.task('watch', () => {
-   browserSync.init({
-      server: {
-         baseDir: "./"
-      }
-   });
-   //Следить за добавлением новых изображений
-   gulp.watch('./src/images/**', gulp.series('img-compress'))
-   //Следить за файлами со стилями с нужным расширением
-   gulp.watch('./src/scss/**/*.scss', gulp.series('styles'))
-   //Следить за JS файлами
-   gulp.watch('./src/js/**/*.js', gulp.series('scripts'))
-   //При изменении HTML запустить синхронизацию
-   gulp.watch("./*.html").on('change', browserSync.reload);
+  browserSync.init({
+    server: {
+      baseDir: './',
+    },
+  });
+  //Следить за добавлением новых изображений
+  gulp.watch('./src/images/**', gulp.series('img-compress'));
+  //Следить за файлами со стилями с нужным расширением
+  gulp.watch('./src/scss/**/*.scss', gulp.series('styles'));
+  //Следить за JS файлами
+  gulp.watch('./src/js/**/*.js', gulp.series('scripts'));
+  //При изменении HTML запустить синхронизацию
+  gulp.watch('./*.html').on('change', browserSync.reload);
 });
 
+gulp.task('build', gulp.series('del', gulp.parallel('styles', 'scripts', 'img-compress')));
 //Таск по умолчанию, Запускает del, styles, scripts, img-compress и watch
-gulp.task('default', gulp.series('del', gulp.parallel('styles', 'scripts', 'img-compress'), 'watch'));
+gulp.task(
+  'default',
+  gulp.series('del', gulp.parallel('styles', 'scripts', 'img-compress'), 'watch'),
+);
